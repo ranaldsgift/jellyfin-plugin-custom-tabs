@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <Version>1.0.0.0</Version>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Jellyfin.Model" Version="10.10.7" />
+        <PackageReference Include="Jellyfin.Controller" Version="10.10.7" />
+        <PackageReference Include="Jellyfin.Common" Version="10.10.7" />
+        <PackageReference Include="Jellyfin.Data" Version="10.10.7" />
+
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Configuration\config.html" />
+      <None Remove="Inject\addCustomTabs.js" />
+      <EmbeddedResource Include="Inject\addCustomTabs.js" />
+      <None Remove="Inject\homeChunk.html" />
+      <EmbeddedResource Include="Inject\homeChunk.html" />
+      <None Remove="Inject\tabTemplate.html" />
+      <EmbeddedResource Include="Inject\tabTemplate.html" />
+      
+      <None Include="..\..\README.md" />
+    </ItemGroup>
+    
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="Exists('C:\ProgramData\Jellyfin\Server\plugins\CustomTabs')">
+        <Exec Command="xcopy $(OutDir) &quot;C:\ProgramData\Jellyfin\Server\plugins\CustomTabs&quot; /y" />
+    </Target>
+</Project>
