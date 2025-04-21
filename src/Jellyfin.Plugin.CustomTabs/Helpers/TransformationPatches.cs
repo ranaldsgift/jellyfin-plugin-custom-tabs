@@ -22,13 +22,6 @@ namespace Jellyfin.Plugin.CustomTabs.Helpers
             string buffer = payload.Contents!;
             {
                 Stream stream = Assembly.GetExecutingAssembly()
-                    .GetManifestResourceStream($"{typeof(CustomTabsPlugin).Namespace}.Inject.homeChunk.html")!;
-                using TextReader reader = new StreamReader(stream);
-
-                buffer = Regex.Replace(buffer, "(movie,series,book\">)", $"$1{reader.ReadToEnd().Replace(Environment.NewLine, "")}");
-            }
-            {
-                Stream stream = Assembly.GetExecutingAssembly()
                     .GetManifestResourceStream($"{typeof(CustomTabsPlugin).Namespace}.Inject.tabTemplate.html")!;
                 using TextReader reader = new StreamReader(stream);
 

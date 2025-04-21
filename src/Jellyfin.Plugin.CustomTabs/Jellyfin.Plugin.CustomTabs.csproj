@@ -21,8 +21,6 @@
       <EmbeddedResource Include="Configuration\config.html" />
       <None Remove="Inject\addCustomTabs.js" />
       <EmbeddedResource Include="Inject\addCustomTabs.js" />
-      <None Remove="Inject\homeChunk.html" />
-      <EmbeddedResource Include="Inject\homeChunk.html" />
       <None Remove="Inject\tabTemplate.html" />
       <EmbeddedResource Include="Inject\tabTemplate.html" />
       
