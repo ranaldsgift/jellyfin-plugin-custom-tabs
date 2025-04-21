@@ -47,6 +47,9 @@
                 </textarea>
                 <div class="fieldDescription">The html that should be displayed when this tab is shown.</div>
             </div>
+            <button data-id="templateRemoveTab" is="emby-button" type="button" class="emby-button raised block">
+                <span>Remove</span>
+            </button>
         </fieldset>
     </template>
     <script type="text/javascript">
@@ -105,6 +108,12 @@
                 init: function () {
                     CustomTabsConfig.btnAddCustomTab.addEventListener("click", CustomTabsConfig.addCustomTabNew);
                     CustomTabsConfig.btnSave.addEventListener("click", CustomTabsConfig.saveConfig);
+                    CustomTabsConfig.configurationWrapper.addEventListener("click", (event) => {
+                        if (event.target.getAttribute('data-id') === "templateRemoveTab") {
+                            const el = event.target.closest("[data-id=tab-config]");
+                            CustomTabsConfig.removeTab(el);
+                        }
+                    });
                     CustomTabsConfig.loadConfig();
                 },
                 addCustomTabNew: function() {
@@ -122,6 +131,9 @@
                     template.querySelector('[data-id=templateHtmlContent]').value = tabConfig.ContentHtml;
 
                     const el = CustomTabsConfig.configurationWrapper.appendChild(template);
+                },
+                removeTab: function(elem) {
+                    elem.remove();
                 }
             }
 
