@@ -1,10 +1,7 @@
 <h1 align="center">Custom Tabs</h1>
 <h2 align="center">A Jellyfin Plugin</h2>
 <p align="center">
-	<!--
     <img alt="Logo" src="https://raw.githubusercontent.com/IAmParadox27/jellyfin-plugin-custom-tabs/main/src/logo.png" />
-	-->
-    <i>Logo Coming Soon</i>
     <br />
 	<br />
 	<a href="https://github.com/IAmParadox27/jellyfin-plugin-custom-tabs">
