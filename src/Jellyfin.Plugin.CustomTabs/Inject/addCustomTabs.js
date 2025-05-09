@@ -12,9 +12,21 @@ if (typeof customTabsPlugin == 'undefined') {
             } );
         },
         mutationHandler: function (mutationRecords) {
-            if (PluginPages.initialized) {
-                return;
+            // get the text of the current page or undefined
+            const currentPage = $('.pageTitle')[0]?.innerHTML
+
+            if (customTabsPlugin.initialized && customTabsPlugin.page === currentPage) {
+              return;
             }
+
+            // If the page didn't match, set our intialized flag to false.
+            customTabsPlugin.initialized = false;
+
+            // We're not on the main page
+            // Config for this could enumerate a list of target pages.
+            if (currentPage !== "") return;
+
+            // Okay, we're back on the main page let's do this thing.
             mutationRecords.forEach ( function (mutation) {
                 console.log (mutation.type);
                 if (mutation.addedNodes && mutation.addedNodes.length > 0) {
@@ -22,6 +34,8 @@ if (typeof customTabsPlugin == 'undefined') {
                     [].some.call(mutation.addedNodes, function (addedNode) {
                         if ($('.emby-tabs-slider').length > 0) {
                             customTabsPlugin.initialized = true;
+                            // store current page title when we succeeded
+                            customTabsPlugin.page = currentPage
                             customTabsPlugin.createCustomTabs();
                         }
                     });
