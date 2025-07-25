@@ -43,12 +43,18 @@ The plugin has been inspired by, and makes use of the work done by, <a href="htt
     :root {
         --save-gut: max(env(safe-area-inset-left), 3.3%);
     }
+   @media only screen and (max-width: 990px) {
+       .requestIframe{
+           height: calc(100vh - 105.15px)!important;
+           margin-top: -6.15px!important;
+       }
+   } 
     .requestIframe {
         width: 100%;
-        height: 85vh;
+        height: calc(100vh - 50.716px);
         position: absolute;
         border: 0;
-        margin-top: -5px;
+        margin-top: -20.716px;
     }
 </style>
 <div class="sections">
